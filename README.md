@@ -61,6 +61,11 @@ Orders are displayed in a clear, user-friendly interface and stored using Java a
 ## **🔁 Flowchart**
 
 <img width="834" src="path_to_flowchart.png" />
+<img width="834" src="path_to_flowchart.png" />
+<img width="834" src="path_to_flowchart.png" />
+<img width="834" src="path_to_flowchart.png" />
+<img width="834" src="path_to_flowchart.png" />
+<img width="834" src="path_to_flowchart.png" />
 
 ---
 
