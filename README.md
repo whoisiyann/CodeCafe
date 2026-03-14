@@ -47,9 +47,13 @@ Orders are displayed in a clear, user-friendly interface and stored using Java a
 
 ## **🧩 Wireframe**
 
-<img width="1200" src="path_to_wireframe_1.png" />
-<img width="1200" src="path_to_wireframe_2.png" />
-<img width="1200" src="path_to_wireframe_3.png" />
+![img alt](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png) 
+![img alt](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png) 
+![img alt](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png) 
+![img alt](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png) 
+![img alt](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png) 
+![img alt](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png) 
+
 
 ---
 
