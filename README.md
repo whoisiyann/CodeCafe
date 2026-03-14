@@ -51,15 +51,6 @@ Orders are displayed in a clear, user-friendly interface and stored using Java a
 <img width="1200" src="path_to_wireframe_2.png" />
 <img width="1200" src="path_to_wireframe_3.png" />
 
-
-
-
-
-
-
-
-
-
 ---
 
 ## **🔁 Flowchart**
@@ -89,5 +80,3 @@ Orders are displayed in a clear, user-friendly interface and stored using Java a
 1. Install Java 17 or higher: [Download Java](https://www.oracle.com/java/technologies/javase-jdk17-downloads.html)  
 2. Install JavaFX 19: [Download JavaFX](https://openjfx.io/)  
 3. Clone this repository:  
-```sh
-
