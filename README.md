@@ -22,12 +22,11 @@ A Smart Coffee Ordering System
 
 ## **📌 About the Project**
 
-**Code Café** is a **Java GUI-based café ordering system** designed to help small cafés or coffee shops manage customer orders efficiently.  
-It allows users to browse the menu, select drinks or snacks, edit orders, generate receipts, and track transactions.
+**Code Café** is a Java GUI-based café ordering system designed to help small cafés or coffee shops manage customer orders efficiently.  
+The system allows users to select items from a menu that includes coffee, non-coffee drinks, and snacks, edit their selections if a mistake was made, and generate receipts.  
+Orders are displayed in a clear, user-friendly interface and stored using Java arrays or SQL. This project reduces manual errors, speeds up order processing, and provides a simple record of transactions.
 
-This system reduces manual errors, speeds up order processing, and provides a simple record of daily operations.
-
-**Project Members:**  
+**Members:**  
 - JUNIO, IAN CHRISTOPHER L.  
 - SARMIENTO, BRYAN JOSEF E.  
 - ORTE, RAINAN S.  
@@ -38,12 +37,11 @@ This system reduces manual errors, speeds up order processing, and provides a si
 
 ## **🚀 Features**
 
-* Browse a categorized menu of **coffee, non-coffee drinks, and snacks**.  
-* Add items to an order and **edit or remove** them before checkout.  
-* View an **order summary** and generate receipts in **text or PDF** format.  
-* Search or filter menu items for faster ordering.  
-* Track **current and past orders** for reporting and analytics.  
-* **User-friendly GUI** built with JavaFX for easy navigation.  
+* **Menu Selection:** Users can browse a categorized menu including coffee, non-coffee drinks, and snacks, and select items to order.  
+* **Order Summary & Receipt:** Displays the total price of the order and prints a simple receipt for the customer. Receipts can be saved as a file (text or PDF) for download if a printer is unavailable.  
+* **Order Management & Edit Orders:** Keeps track of current and past orders in a structured way for easy reference. Users can also edit or remove items from the order if a mistake was made before finalizing.  
+* **Search & Filter Menu:** Quickly find drinks by name or category to make ordering faster.  
+* **Simple Reporting:** Shows total orders for the day and popular menu items.  
 
 ---
 
@@ -64,16 +62,16 @@ This system reduces manual errors, speeds up order processing, and provides a si
 ## **⚙️ How It Works**
 
 1. **Load Menu Items**  
-   Menu data (coffee, non-coffee, snacks) is loaded from a database or arrays.
+   Menu data (coffee, non-coffee, snacks) is loaded from Java arrays or SQL database.  
 
 2. **Select & Customize Orders**  
-   Users browse and add items to their order. Items can be modified or removed before finalizing.
+   Users browse and add items to their order. Items can be modified or removed before finalizing.  
 
 3. **Generate Receipt**  
-   The system calculates the total price and creates a receipt. Receipts can be saved as text or PDF.
+   The system calculates the total price and generates a receipt in text or PDF format.  
 
 4. **Track Orders**  
-   All orders are stored for reference, reporting, and analytics.
+   Orders are stored for reference, reporting, and analytics.  
 
 ---
 
