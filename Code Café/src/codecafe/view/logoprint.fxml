@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
+
+<ImageView fx:id="logoPrint" fitHeight="125.0" fitWidth="150.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+   <image>
+      <Image url="@../assets/images/logo.png" />
+   </image>
+</ImageView>

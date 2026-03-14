@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" styleClass="background" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codecafe.controller.CheckoutController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" styleClass="background" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codecafe.controller.PDFreceiptController">
    <children>
       <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutX="-1.0" layoutY="1.0">
          <image>
@@ -20,7 +20,7 @@
             <Font name="Serif Regular" size="52.0" />
          </font>
       </Label>
-      <Button layoutX="809.0" layoutY="530.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="302.0" styleClass="print-btn" stylesheets="@../assets/css/printScene.css" text="PDF Receipt">
+      <Button fx:id="pdfReceiptBtn" layoutX="809.0" layoutY="530.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="302.0" styleClass="print-btn" stylesheets="@../assets/css/printScene.css" text="PDF Receipt">
          <font>
             <Font size="28.0" />
          </font>
