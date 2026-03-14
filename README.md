@@ -51,6 +51,15 @@ Orders are displayed in a clear, user-friendly interface and stored using Java a
 <img width="1200" src="path_to_wireframe_2.png" />
 <img width="1200" src="path_to_wireframe_3.png" />
 
+
+
+
+
+
+
+
+
+
 ---
 
 ## **🔁 Flowchart**
