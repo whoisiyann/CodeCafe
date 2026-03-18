@@ -7,7 +7,7 @@
     -fx-background-radius: 10;
 
     -fx-min-width: 334;
-    -fx-pref-width: 1200;
+    -fx-pref-width:1200;
     -fx-max-width: 1200;
 
     -fx-padding: 0 0 10 0;
@@ -23,7 +23,7 @@
 .ordered_name {
     -fx-text-fill: #1F1F1F;  
     -fx-font-family: "Poppins";
-    -fx-font-size: 17px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
 
     -fx-background-color: transparent;
@@ -55,4 +55,36 @@
 .delete-ordered-item:hover {   
     -fx-scale-x: 1.25;               
     -fx-scale-y: 1.25;
+}
+
+.ordered-quantity-minus-add-btn {
+    -fx-background-color: #6b3e26; 
+    -fx-text-fill: white; 
+    -fx-font-size: 8px;
+    -fx-font-weight: bold;   
+
+    -fx-alignment: center;
+
+    -fx-min-width: 18px;
+    -fx-min-height: 18px;
+    -fx-max-width: 18px;
+    -fx-max-height: 18px;
+
+    -fx-background-radius: 5;
+}
+
+.ordered-quantity-minus-add-btn:hover {
+    -fx-background-color: #8b5a3c;
+    -fx-cursor: hand;
+
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.ordered-quantity-label {
+    -fx-font-family: "Poppins";
+    -fx-font-size: 10px;
+    -fx-text-fill: #6B3F2A; 
+    -fx-font-weight: bold;
+    -fx-alignment: center;
 }

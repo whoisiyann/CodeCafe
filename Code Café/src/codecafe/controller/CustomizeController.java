@@ -188,40 +188,54 @@ public class CustomizeController {
     }
 
     //Add to order button handler
-    private void attachAddToOrderHandler() {
-        addToOrderBtn.setOnAction(e -> {
-            String name = coffeeNameLabel.getText();
-            String imagePath = coffeeImage.getUserData() != null ? coffeeImage.getUserData().toString() : "";
+private void attachAddToOrderHandler() {
 
-            double addOnsTotal = 0;
+    addToOrderBtn.setOnAction(e -> {
 
-            for (AddOn addOn : addOns) {
-                addOnsTotal += addOn.price * addOn.quantity;
+        String name = coffeeNameLabel.getText();
+        String imagePath = coffeeImage.getUserData() != null 
+                ? coffeeImage.getUserData().toString() 
+                : "";
+
+        double addOnsTotal = 0;
+
+        for (AddOn addOn : addOns) {
+            addOnsTotal += addOn.price * addOn.quantity;
+        }
+
+        String priceStr = "₱ " + pesoFormat.format(basePrice);
+
+        // Format add-ons text
+        List<String> selectedAddOns = new ArrayList<>();
+
+        for (AddOn addOn : addOns) {
+            if (addOn.quantity > 0) {
+                selectedAddOns.add(addOn.quantity + " " + addOn.name);
             }
+        }
 
-            double perItemPrice = basePrice + addOnsTotal;
+        String addonsStr = selectedAddOns.isEmpty() 
+                ? "" 
+                : "Add-ons: " + String.join(", ", selectedAddOns);
 
-            String priceStr = "₱ " + pesoFormat.format(perItemPrice);
+        if (menuController != null) {
 
-            // Format add-ons with quantities 
-            List<String> selectedAddOns = new ArrayList<>();
-            for (AddOn addOn : addOns) {
-                if (addOn.quantity > 0) {
-                    selectedAddOns.add(addOn.quantity + " " + addOn.name);
-                }
-            }
-            String addonsStr = selectedAddOns.isEmpty() ? "" : "Add-ons: " + String.join(", ", selectedAddOns);
+            menuController.addOrderItem(
+                    name,
+                    priceStr,
+                    imagePath,
+                    addonsStr,
+                    quantity,
+                    addOnsTotal
+            );
+        }
 
-            if (menuController != null) {
-                menuController.addOrderItem(name, priceStr, imagePath, addonsStr, quantity);
-            }
-
-            // Go back to previous menu
-            if (contentAnchor != null && previousMenu != null) {
-                contentAnchor.getChildren().setAll(previousMenu);
-            }
-        });
-    }
+        if (contentAnchor != null && previousMenu != null) {
+            contentAnchor.getChildren().setAll(previousMenu);
+        }
+    });
+}
+    
 
     //Update total price
     private double getPerItemPrice() {

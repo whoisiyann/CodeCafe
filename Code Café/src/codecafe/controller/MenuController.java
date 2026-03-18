@@ -393,13 +393,14 @@ public class MenuController {
             if (plusBtn != null) {
                 plusBtn.setOnMouseClicked(e -> {
 
-                    addOrderItem(
-                            names[index],
-                            prices[index],
-                            images[index],
-                            "",
-                            1
-                    );
+                addOrderItem(
+                        names[index],
+                        prices[index],
+                        images[index],
+                        "",
+                        1,
+                        0
+                );
 
                     e.consume();
                 });
@@ -411,7 +412,7 @@ public class MenuController {
 
     // ADD ORDER ITEM
 
-    public void addOrderItem(String name, String price, String imagePath, String addons, int quantity) {
+    public void addOrderItem(String name, String price, String imagePath, String addons, int quantity, double addonsTotal) {
 
         try {
 
@@ -421,13 +422,13 @@ public class MenuController {
 
                 Node existingCard = orderedItemsMap.get(key);
 
-                Label qtyLabel = (Label) existingCard.lookup("#ordered_name1");
+                Label qtyLabel = (Label) existingCard.lookup("#orderedQuantityLabel");
                 Label priceLabel = (Label) existingCard.lookup("#ordered_prize");
 
-                int currentQty = Integer.parseInt(qtyLabel.getText().replace("x",""));
+                int currentQty = Integer.parseInt(qtyLabel.getText());
                 currentQty += quantity;
 
-                qtyLabel.setText("x" + currentQty);
+                qtyLabel.setText(String.valueOf(currentQty));
 
                 double perItemPrice = (double) existingCard.getUserData();
                 double newPrice = perItemPrice * currentQty;
@@ -441,48 +442,78 @@ public class MenuController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/codecafe/view/ordered_item.fxml"));
             StackPane itemCard = loader.load();
 
+            // GET UI ELEMENTS
             ImageView orderedImage = (ImageView) itemCard.lookup("#ordered_image");
             Label orderedName = (Label) itemCard.lookup("#ordered_name");
             Label orderedPrice = (Label) itemCard.lookup("#ordered_prize");
             Text orderedAddons = (Text) itemCard.lookup("#ordered_addons");
-            Label orderedQuantityLabel = (Label) itemCard.lookup("#ordered_name1");
+            Label orderedQuantityLabel = (Label) itemCard.lookup("#orderedQuantityLabel");
+            Button minusBtn = (Button) itemCard.lookup("#ordered_minusBtn");
+            Button plusBtn = (Button) itemCard.lookup("#ordered_plusBtn");
             ImageView deleteBtn = (ImageView) itemCard.lookup("#delete_ordered_item");
 
+            // SET TEXT AND IMAGE
             orderedName.setText(name);
-
-            double numericPrice = Double.parseDouble(price.replace("₱","").trim());
-
-            itemCard.setUserData(numericPrice);
-
-            orderedPrice.setText("₱ " + pesoFormat.format(numericPrice * quantity));
+            orderedQuantityLabel.setText(String.valueOf(quantity)); 
             orderedAddons.setText(addons);
-            orderedQuantityLabel.setText("x" + quantity);
+
+            double basePrice = Double.parseDouble(price.replace("₱","").trim());
+
+            double totalPrice = (basePrice * quantity) + addonsTotal;
+
+            itemCard.setUserData(basePrice + addonsTotal);
+
+            orderedPrice.setText("₱ " + pesoFormat.format(totalPrice));
 
             if (!imagePath.isEmpty()) {
                 orderedImage.setImage(new Image(getClass().getResourceAsStream(imagePath)));
             }
 
+            // DELETE BUTTON
             if (deleteBtn != null) {
-
-            deleteBtn.setOnMouseClicked(e -> {
-
-                ordered_items_VBox.getChildren().remove(itemCard);
-
-                orderedItemsMap.entrySet().removeIf(entry -> entry.getValue() == itemCard);
-
-                updateTotals();
-
-                if (ordered_items_VBox.getChildren().isEmpty()) {
-                    ordered_items_VBox.getChildren().add(reminder_ordered_card);
-                }
-
-            });
-
+                deleteBtn.setOnMouseClicked(e -> {
+                    ordered_items_VBox.getChildren().remove(itemCard);
+                    orderedItemsMap.entrySet().removeIf(entry -> entry.getValue() == itemCard);
+                    updateTotals();
+                    if (ordered_items_VBox.getChildren().isEmpty()) {
+                        ordered_items_VBox.getChildren().add(reminder_ordered_card);
+                    }
+                });
             }
 
+            // MINUS BUTTON
+            if (minusBtn != null && orderedQuantityLabel != null) {
+                minusBtn.setOnAction(e -> {
+                    int currentQty = Integer.parseInt(orderedQuantityLabel.getText());
+                    if (currentQty > 1) {  // minimum quantity = 1
+                        currentQty--;
+                        orderedQuantityLabel.setText(String.valueOf(currentQty));
+                        double perItemPrice = (double) itemCard.getUserData();
+                        double newPrice = perItemPrice * currentQty;
+                        orderedPrice.setText("₱ " + pesoFormat.format(newPrice));
+                        updateTotals();
+                    }
+                });
+            }
+
+            // PLUS BUTTON
+            if (plusBtn != null && orderedQuantityLabel != null) {
+                plusBtn.setOnAction(e -> {
+                    int currentQty = Integer.parseInt(orderedQuantityLabel.getText());
+                    currentQty++;
+                    orderedQuantityLabel.setText(String.valueOf(currentQty));
+                    double perItemPrice = (double) itemCard.getUserData();
+                    double newPrice = perItemPrice * currentQty;
+                    orderedPrice.setText("₱ " + pesoFormat.format(newPrice));
+                    updateTotals();
+                });
+            }
+
+            // ADD TO VBox
             ordered_items_VBox.getChildren().remove(reminder_ordered_card);
             ordered_items_VBox.getChildren().add(itemCard);
 
+            // SAVE IN MAP
             orderedItemsMap.put(key, itemCard);
 
             updateTotals();
@@ -503,7 +534,7 @@ public class MenuController {
 
         for (Node itemCard : orderedItemsMap.values()) {
 
-            Label qtyLabel = (Label) itemCard.lookup("#ordered_name1");
+            Label qtyLabel = (Label) itemCard.lookup("#orderedQuantityLabel");
 
             if (qtyLabel != null) {
 
@@ -601,48 +632,48 @@ public class MenuController {
         return totalPrice;
     }
 
-public void restoreOrders(HashMap<String, Node> map, int items, double price){
+    public void restoreOrders(HashMap<String, Node> map, int items, double price){
 
-    orderedItemsMap = map;
+        orderedItemsMap = map;
 
-    ordered_items_VBox.getChildren().clear();
+        ordered_items_VBox.getChildren().clear();
 
-    if(orderedItemsMap.isEmpty()){
-        ordered_items_VBox.getChildren().add(reminder_ordered_card);
-    } 
-    else {
+        if(orderedItemsMap.isEmpty()){
+            ordered_items_VBox.getChildren().add(reminder_ordered_card);
+        } 
+        else {
 
-        for(Node item : orderedItemsMap.values()){
+            for(Node item : orderedItemsMap.values()){
 
-            ImageView deleteBtn = (ImageView) item.lookup("#delete_ordered_item");
+                ImageView deleteBtn = (ImageView) item.lookup("#delete_ordered_item");
 
-            if(deleteBtn != null){
+                if(deleteBtn != null){
 
-                deleteBtn.setOnMouseClicked(e -> {
+                    deleteBtn.setOnMouseClicked(e -> {
 
-                    ordered_items_VBox.getChildren().remove(item);
+                        ordered_items_VBox.getChildren().remove(item);
 
-                    orderedItemsMap.entrySet().removeIf(entry -> entry.getValue() == item);
+                        orderedItemsMap.entrySet().removeIf(entry -> entry.getValue() == item);
 
-                    updateTotals();
+                        updateTotals();
 
-                    if (ordered_items_VBox.getChildren().isEmpty()) {
-                        ordered_items_VBox.getChildren().add(reminder_ordered_card);
-                    }
+                        if (ordered_items_VBox.getChildren().isEmpty()) {
+                            ordered_items_VBox.getChildren().add(reminder_ordered_card);
+                        }
 
-                });
+                    });
 
+                }
+
+                ordered_items_VBox.getChildren().add(item);
             }
-
-            ordered_items_VBox.getChildren().add(item);
         }
+
+        totalItems = items;
+        totalPrice = price;
+
+        updateTotals();
     }
-
-    totalItems = items;
-    totalPrice = price;
-
-    updateTotals();
-}
 
 
     
