@@ -59,10 +59,11 @@ The interface is intuitive and user-friendly, ensuring quick navigation and mini
 ![Wireframe 1](https://github.com/whoisiyann/CodeCafe/blob/0045f5003326c213272450525cba5646bded7f6b/Wireframe/Screenshot%202026-03-14%20120616.png)  
 ![Wireframe 2](https://github.com/whoisiyann/CodeCafe/blob/56956e5e916ad79a2081decc9a113d93ec33bb41/Wireframe/Screenshot%202026-03-14%20120629.png)  
 ![Wireframe 3](https://github.com/whoisiyann/CodeCafe/blob/56956e5e916ad79a2081decc9a113d93ec33bb41/Wireframe/Screenshot%202026-03-14%20120651.png)  
-![Wireframe 4](https://github.com/whoisiyann/CodeCafe/blob/56956e5e916ad79a2081decc9a113d93ec33bb41/Wireframe/Screenshot%202026-03-14%20120730.png)  
-![Wireframe 5](https://github.com/whoisiyann/CodeCafe/blob/56956e5e916ad79a2081decc9a113d93ec33bb41/Wireframe/Screenshot%202026-03-14%20120802.png)  
-![Wireframe 6](https://github.com/whoisiyann/CodeCafe/blob/56956e5e916ad79a2081decc9a113d93ec33bb41/Wireframe/Screenshot%202026-03-14%20120820.png)  
-![Wireframe 7](https://github.com/whoisiyann/CodeCafe/blob/56956e5e916ad79a2081decc9a113d93ec33bb41/Wireframe/Screenshot%202026-03-14%20120901.png)  
+![Wireframe 4](https://github.com/whoisiyann/CodeCafe/blob/f060af988c131873a4acd2bc24cfab3c6e9b5c90/Wireframe/Screenshot%202026-03-18%20233418.png)  
+![Wireframe 5](https://github.com/whoisiyann/CodeCafe/blob/f060af988c131873a4acd2bc24cfab3c6e9b5c90/Wireframe/Screenshot%202026-03-18%20233616.png)  
+![Wireframe 6](https://github.com/whoisiyann/CodeCafe/blob/f060af988c131873a4acd2bc24cfab3c6e9b5c90/Wireframe/Screenshot%202026-03-18%20233648.png)  
+![Wireframe 7](https://github.com/whoisiyann/CodeCafe/blob/f060af988c131873a4acd2bc24cfab3c6e9b5c90/Wireframe/Screenshot%202026-03-18%20233702.png)  
+![Wireframe 8](https://github.com/whoisiyann/CodeCafe/blob/f060af988c131873a4acd2bc24cfab3c6e9b5c90/Wireframe/Screenshot%202026-03-18%20233719.png)  
 
 ---
 
