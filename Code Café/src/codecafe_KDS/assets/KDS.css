@@ -1,0 +1,45 @@
+.background {
+    -fx-background-color: #F4EFEA;
+}
+
+.top {
+    -fx-background-color: #6B3F2A;
+}
+
+.top-label {
+    -fx-font-family: "Poppins";
+    -fx-font-size: 60px;
+    -fx-text-fill: #FFFFFF; 
+    -fx-font-weight: bold; 
+}
+
+.back-next-btn {
+    -fx-background-color: #6b3e26; 
+    -fx-text-fill: white; 
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;   
+
+    -fx-alignment: center;
+
+    -fx-min-width: 80px;
+    -fx-min-height: 80px;
+    -fx-max-width: 80px;
+    -fx-max-height: 80px;
+
+    -fx-background-radius: 10;
+}
+
+.back-next-btn:hover{
+    -fx-background-color: #8b5a3c;
+    -fx-cursor: hand;
+
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.total-orders {
+    -fx-font-family: "Poppins";
+    -fx-text-fill: #6B3F2A;  
+    -fx-font-size: 35px;
+    -fx-font-weight: 700; 
+}

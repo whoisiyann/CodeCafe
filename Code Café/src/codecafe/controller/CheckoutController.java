@@ -15,10 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
+import codecafe.db.DBConnection;
 import codecafe.model.OrderData;
 import javafx.print.PrinterJob;
 import javafx.print.PageOrientation;
@@ -142,72 +144,149 @@ public class CheckoutController {
         return receipt.toString();
     }
 
-@FXML
-private void printReceipt() {
-    try {
+    @FXML
+    private void printReceipt() {
+        try {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/codecafe/view/logoprint.fxml"));
-        ImageView logoView = loader.load();
-        logoView.setFitWidth(150);
-        logoView.setFitHeight(125);
-        logoView.setPreserveRatio(true);
+            saveOrderToDatabase();
 
-        // Put logo inside HBox for printing
-        HBox logoContainer = new HBox();
-        logoContainer.setPrefWidth(450);               
-        logoContainer.setAlignment(Pos.TOP_LEFT);      
-        logoContainer.setPadding(new Insets(0, 0, 0, 50)); 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codecafe/view/logoprint.fxml"));
+            ImageView logoView = loader.load();
+            logoView.setFitWidth(150);
+            logoView.setFitHeight(125);
+            logoView.setPreserveRatio(true);
 
-        // Generate receipt text 
-        String receiptText = generateReceipt(
-                OrderData.getInstance().getOrderMap(),
-                OrderData.getInstance().getTotalItems(),
-                OrderData.getInstance().getTotalPrice(),
-                OrderData.getInstance().getOrderType()
-        );
+            // Put logo inside HBox for printing
+            HBox logoContainer = new HBox();
+            logoContainer.setPrefWidth(450);               
+            logoContainer.setAlignment(Pos.TOP_LEFT);      
+            logoContainer.setPadding(new Insets(0, 0, 0, 50)); 
 
-        //  Create receipt label with wrapping 
-        Label receiptLabel = new Label(receiptText);
-        receiptLabel.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12; -fx-text-fill: black;");
-        receiptLabel.setWrapText(true);    
-        receiptLabel.setMaxWidth(400);     
-
-        // Create VBox to hold logo HBox and receipt text 
-        VBox printContent = new VBox();
-        printContent.setSpacing(10);
-        printContent.setStyle("-fx-padding: 20;");  
-        printContent.setPrefWidth(450);
-        printContent.setMaxWidth(450);
-        printContent.setAlignment(Pos.TOP_CENTER);   
-
-        // Add logo container and receipt label
-        printContent.getChildren().addAll(logoContainer, receiptLabel);
-
-        //  Printer job 
-        PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null) {
-            job.getJobSettings().setPrintColor(PrintColor.MONOCHROME);
-            job.getJobSettings().setPageLayout(
-                    job.getPrinter().createPageLayout(
-                            Paper.NA_LETTER,
-                            PageOrientation.PORTRAIT,
-                            36, 36, 36, 36 // margins: top, right, bottom, left in points
-                    )
+            // Generate receipt text 
+            String receiptText = generateReceipt(
+                    OrderData.getInstance().getOrderMap(),
+                    OrderData.getInstance().getTotalItems(),
+                    OrderData.getInstance().getTotalPrice(),
+                    OrderData.getInstance().getOrderType()
             );
 
-            if (job.printPage(printContent)) {
-                job.endJob();
+            //  Create receipt label with wrapping 
+            Label receiptLabel = new Label(receiptText);
+            receiptLabel.setStyle("-fx-font-family: 'Courier New'; -fx-font-size: 12; -fx-text-fill: black;");
+            receiptLabel.setWrapText(true);    
+            receiptLabel.setMaxWidth(400);     
+
+            // Create VBox to hold logo HBox and receipt text 
+            VBox printContent = new VBox();
+            printContent.setSpacing(10);
+            printContent.setStyle("-fx-padding: 20;");  
+            printContent.setPrefWidth(450);
+            printContent.setMaxWidth(450);
+            printContent.setAlignment(Pos.TOP_CENTER);   
+
+            // Add logo container and receipt label
+            printContent.getChildren().addAll(logoContainer, receiptLabel);
+
+            //  Printer job 
+            PrinterJob job = PrinterJob.createPrinterJob();
+            if (job != null) {
+                job.getJobSettings().setPrintColor(PrintColor.MONOCHROME);
+                job.getJobSettings().setPageLayout(
+                        job.getPrinter().createPageLayout(
+                                Paper.NA_LETTER,
+                                PageOrientation.PORTRAIT,
+                                36, 36, 36, 36 // margins: top, right, bottom, left in points
+                        )
+                );
+
+                if (job.printPage(printContent)) {
+                    job.endJob();
+                }
             }
+
+            //  Open showReceipt.fxml window 
+            FXMLLoader pdfLoader = new FXMLLoader(getClass().getResource("/codecafe/view/print_or_showReceipt.fxml"));
+            Parent pdfRoot = pdfLoader.load();
+            Stage stage = (Stage) checkout_btn2.getScene().getWindow();
+            stage.setScene(new Scene(pdfRoot, 1920, 1080));
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
-
-        //  Open PDF/Print options window 
-        FXMLLoader pdfLoader = new FXMLLoader(getClass().getResource("/codecafe/view/print_or_showReceipt.fxml"));
-        Parent pdfRoot = pdfLoader.load();
-        Stage stage = (Stage) checkout_btn2.getScene().getWindow();
-        stage.setScene(new Scene(pdfRoot, 1920, 1080));
-
-    } catch (Exception ex) {
-        ex.printStackTrace();
     }
-}
+
+    ///Save order to Database
+    private void saveOrderToDatabase() {
+
+        System.out.println("Saving order to database...");
+
+        try (Connection conn = DBConnection.connect()) {
+
+            System.out.println("Database connected!");
+
+            OrderData data = OrderData.getInstance();
+
+            String orderNumber = String.format("%05d", orderCounter++);
+
+            String orderSQL =
+            "INSERT INTO orders (order_number, order_type, total_items, total_price, status) VALUES (?, ?, ?, ?, ?)";
+
+            var ps = conn.prepareStatement(orderSQL, java.sql.Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, orderNumber);
+            ps.setString(2, data.getOrderType());
+            ps.setInt(3, data.getTotalItems());
+            ps.setDouble(4, data.getTotalPrice());
+            ps.setString(5, "PENDING");
+
+            ps.executeUpdate();
+
+            var rs = ps.getGeneratedKeys();
+
+            int orderId = 0;
+
+            if (rs.next()) {
+                orderId = rs.getInt(1);
+            }
+
+            String itemSQL =
+            "INSERT INTO order_items (order_id, item_name, quantity, price, addons) VALUES (?, ?, ?, ?, ?)";
+
+            var itemPS = conn.prepareStatement(itemSQL);
+
+            for (Node itemCard : data.getOrderMap().values()) {
+
+                Label name = (Label) itemCard.lookup("#ordered_name");
+                Label qty = (Label) itemCard.lookup("#orderedQuantityLabel");
+                Label price = (Label) itemCard.lookup("#ordered_price");
+                Text addons = (Text) itemCard.lookup("#ordered_addons");
+
+                itemPS.setInt(1, orderId);
+                itemPS.setString(2, name.getText());
+                itemPS.setInt(3, Integer.parseInt(qty.getText()));
+                itemPS.setDouble(4, Double.parseDouble(price.getText().replace("₱","").trim()));
+                itemPS.setString(5, addons.getText());
+
+                itemPS.addBatch();
+            }
+
+            itemPS.executeBatch();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }

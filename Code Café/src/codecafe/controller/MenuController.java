@@ -302,7 +302,6 @@ public class MenuController {
                         "A warm waffle topped with creamy Nutella and soft marshmallows. The toasted mallows add a sweet, gooey texture for a delightful dessert treat.",
                         "A soft waffle topped with fresh strawberry topping and creamy whipped cream. Sweet, fruity, and refreshing for a light dessert option."},
 
-
                     new String[]{
                         "/codecafe/assets/images/Croffles/biscoff_cream.png",
                         "/codecafe/assets/images/Croffles/oreo_cream.png",
