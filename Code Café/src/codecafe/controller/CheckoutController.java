@@ -37,8 +37,6 @@ public class CheckoutController {
     @FXML private Label total_price_label2;
     @FXML private Button back_to_menu_btn;
 
-    // Simple order no.# generator
-    private static int orderCounter = 1; 
 
     public void loadCheckoutData(HashMap<String, Node> orderedItemsMap, int totalItems, double totalPrice) {
         ordered_items_VBox2.getChildren().clear();
@@ -87,7 +85,7 @@ public class CheckoutController {
         StringBuilder receipt = new StringBuilder();
         LocalDateTime now = LocalDateTime.now();
         String dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        String orderNumber = String.format("%05d", orderCounter++);
+        String orderNumber = getNextOrderNumber();
 
         receipt.append("================================\n");
         receipt.append("           Code Café           \n");
@@ -226,7 +224,7 @@ public class CheckoutController {
 
             OrderData data = OrderData.getInstance();
 
-            String orderNumber = String.format("%05d", orderCounter++);
+            String orderNumber = getNextOrderNumber();
 
             String orderSQL =
             "INSERT INTO orders (order_number, order_type, total_items, total_price, status) VALUES (?, ?, ?, ?, ?)";
@@ -277,16 +275,30 @@ public class CheckoutController {
         }
     }
 
+    private String getNextOrderNumber() {
 
+        String nextOrder = "00001";
 
+        try (Connection conn = DBConnection.connect()) {
 
+            String sql = "SELECT order_number FROM orders ORDER BY id DESC LIMIT 1";
 
+            var ps = conn.prepareStatement(sql);
+            var rs = ps.executeQuery();
 
+            if (rs.next()) {
 
+                String lastOrder = rs.getString("order_number");
+                int num = Integer.parseInt(lastOrder);
+                num++;
 
+                nextOrder = String.format("%05d", num);
+            }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-
-
-    
+        return nextOrder;
+    }
 }
