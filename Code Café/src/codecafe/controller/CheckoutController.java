@@ -37,6 +37,13 @@ public class CheckoutController {
     @FXML private Label total_price_label2;
     @FXML private Button back_to_menu_btn;
 
+    private int orderId;
+    private String currentOrderNumber;
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
 
     public void loadCheckoutData(HashMap<String, Node> orderedItemsMap, int totalItems, double totalPrice) {
         ordered_items_VBox2.getChildren().clear();
@@ -85,7 +92,7 @@ public class CheckoutController {
         StringBuilder receipt = new StringBuilder();
         LocalDateTime now = LocalDateTime.now();
         String dateTime = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-        String orderNumber = getNextOrderNumber();
+        String orderNumber = currentOrderNumber;
 
         receipt.append("================================\n");
         receipt.append("           Code Café           \n");
@@ -107,7 +114,8 @@ public class CheckoutController {
             Text addonsText = (Text) itemCard.lookup("#ordered_addons");
 
             String name = nameLabel != null ? nameLabel.getText() : "";
-            String qty = qtyLabel != null ? qtyLabel.getText() : "x1";
+            String qtyRaw = qtyLabel != null ? qtyLabel.getText() : "1";
+            String qty = "x" + qtyRaw;
             String price = priceLabel != null ? priceLabel.getText().replace("₱", "") : "0.00";
             String addons = addonsText != null ? addonsText.getText() : "";
 
@@ -156,6 +164,7 @@ public class CheckoutController {
 
             // Put logo inside HBox for printing
             HBox logoContainer = new HBox();
+            logoContainer.getChildren().add(logoView);
             logoContainer.setPrefWidth(450);               
             logoContainer.setAlignment(Pos.TOP_LEFT);      
             logoContainer.setPadding(new Insets(0, 0, 0, 50)); 
@@ -224,14 +233,14 @@ public class CheckoutController {
 
             OrderData data = OrderData.getInstance();
 
-            String orderNumber = getNextOrderNumber();
+            String orderNumber = null;
 
             String orderSQL =
             "INSERT INTO orders (order_number, order_type, total_items, total_price, status) VALUES (?, ?, ?, ?, ?)";
 
             var ps = conn.prepareStatement(orderSQL, java.sql.Statement.RETURN_GENERATED_KEYS);
 
-            ps.setString(1, orderNumber);
+            ps.setString(1, ""); // temporary
             ps.setString(2, data.getOrderType());
             ps.setInt(3, data.getTotalItems());
             ps.setDouble(4, data.getTotalPrice());
@@ -246,6 +255,15 @@ public class CheckoutController {
             if (rs.next()) {
                 orderId = rs.getInt(1);
             }
+
+            orderNumber = String.format("%05d", orderId);
+            currentOrderNumber = orderNumber; 
+
+            String updateSQL = "UPDATE orders SET order_number = ? WHERE id = ?";
+            var updatePS = conn.prepareStatement(updateSQL);
+            updatePS.setString(1, orderNumber);
+            updatePS.setInt(2, orderId);
+            updatePS.executeUpdate();
 
             String itemSQL =
             "INSERT INTO order_items (order_id, item_name, quantity, price, addons) VALUES (?, ?, ?, ?, ?)";
@@ -275,30 +293,4 @@ public class CheckoutController {
         }
     }
 
-    private String getNextOrderNumber() {
-
-        String nextOrder = "00001";
-
-        try (Connection conn = DBConnection.connect()) {
-
-            String sql = "SELECT order_number FROM orders ORDER BY id DESC LIMIT 1";
-
-            var ps = conn.prepareStatement(sql);
-            var rs = ps.executeQuery();
-
-            if (rs.next()) {
-
-                String lastOrder = rs.getString("order_number");
-                int num = Integer.parseInt(lastOrder);
-                num++;
-
-                nextOrder = String.format("%05d", num);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return nextOrder;
-    }
 }

@@ -22,32 +22,6 @@ public class ShowReceiptController {
     @FXML private Label totalPriceLabel;
 
 
-    private String getLastOrderNumber() {
-
-        String orderNumber = "00001";
-
-        try (java.sql.Connection conn = codecafe.db.DBConnection.connect()) {
-
-            String sql = "SELECT order_number FROM orders ORDER BY id DESC LIMIT 1";
-
-            var ps = conn.prepareStatement(sql);
-            var rs = ps.executeQuery();
-
-            if (rs.next()) {
-                orderNumber = rs.getString("order_number");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return orderNumber;
-    }
-
-
-
-
-
     private int getLastOrderId() {
 
         int id = 1;
@@ -69,10 +43,6 @@ public class ShowReceiptController {
 
         return id;
     }
-
-
-
-
 
 
     @FXML
