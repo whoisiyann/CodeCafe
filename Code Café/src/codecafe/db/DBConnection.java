@@ -52,6 +52,9 @@ CREATE TABLE order_items (
 
 
 ------------------------------------------------------------------------------------
+NOTE: OPTIONAL LANG IF ANG GAGAWIN NATIN SA DEFENSE IS TWO LAPTOP PARA LANG IPAKITA ANG KIOSK AT KDS THROUGH DEFERENT DEVICES
+Laptop 1 - kiosk
+laptop 2 - KDS
 
 Laptop 1 (mag rurun ng KIOS)
 private static final String URL = "jdbc:mysql://192.168.x.x:3306/codecafe_db";
@@ -131,6 +134,11 @@ LAST is irun mo si TestDB.java
 check mo kung 
 
 Connected successfully! or Connection failed!
+
+
+
+
+
 
 
 
