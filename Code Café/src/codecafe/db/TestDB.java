@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class TestDB {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://192.168.1.6:3306/codecafe_db"; //IP address ng laptop 2 for (KDS)
+        String url = "jdbc:mysql://192.168.1.11:3306/codecafe_db"; //IP address ng laptop 2 for (KDS)
         String user = "kiosk";
         String pass = "kioskpass";
 

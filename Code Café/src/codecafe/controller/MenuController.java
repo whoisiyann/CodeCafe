@@ -556,10 +556,14 @@ public class MenuController {
     }
 
 
-    // DELETE ALL 
-
+    // DELETE ALL ORDERED ITEMS
     @FXML
     private void deleteAllItems(javafx.scene.input.MouseEvent event) {
+
+        if (orderedItemsMap.isEmpty()) {
+            return;
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/codecafe/view/delete_confirmation.fxml"));
             AnchorPane popup = loader.load();

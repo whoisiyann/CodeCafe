@@ -10,15 +10,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Load FXML
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/codecafe/view/start_screen.fxml"));
         Parent root = loader.load();
 
-        // Create scene
         Scene scene = new Scene(root);
 
-        // Set title and show stage
-        primaryStage.setTitle("Code Coffee");
+        primaryStage.setTitle("Code Café");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

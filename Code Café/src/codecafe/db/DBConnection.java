@@ -50,6 +50,15 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
+------------------------------------------------------------------------------------
+FOR KIOSK USER AND PASSWORD
+
+CREATE USER 'kiosk'@'%' IDENTIFIED BY 'kioskpass';
+GRANT ALL PRIVILEGES ON codecafe_db.* TO 'kiosk'@'%';
+FLUSH PRIVILEGES;
+
+check kung naadd na yung user sa MySQL Workbench...
+SELECT User, Host FROM mysql.user;
 
 ------------------------------------------------------------------------------------
 NOTE: OPTIONAL LANG IF ANG GAGAWIN NATIN SA DEFENSE IS TWO LAPTOP PARA LANG IPAKITA ANG KIOSK AT KDS THROUGH DEFERENT DEVICES

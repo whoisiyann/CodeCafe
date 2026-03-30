@@ -27,7 +27,7 @@
             <VBox prefHeight="110.0" prefWidth="168.0" spacing="5" HBox.hgrow="ALWAYS">
                 <Label fx:id="ordered_name" prefHeight="28.0" prefWidth="282.0" styleClass="ordered_name" text="Caramel Macchiato" wrapText="true">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets left="-10.0" top="10.0" />
                </VBox.margin></Label>
                 <Label fx:id="ordered_price" styleClass="ordered-prize" text="₱ 00.00" />
             <Text fx:id="ordered_addons" strokeType="OUTSIDE" strokeWidth="0.0" text="Add ons: Caramel Syrup, Espresso shot, Whipped Cream" wrappingWidth="166.99935913085938" />

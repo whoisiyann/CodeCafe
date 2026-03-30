@@ -55,7 +55,6 @@ public class OrderData {
         this.orderType = type;
     }
 
-    // Optional: reset all order data
     public void clear() {
         orderMap.clear();
         totalItems = 0;
