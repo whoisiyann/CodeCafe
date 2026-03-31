@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="customize_scene" prefHeight="751.0" prefWidth="1096.0" styleClass="nav-card" stylesheets="@../assets/css/menu.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="codecafe.controller.CustomizeFoodCrofflesController">
+   <children>
+      <AnchorPane layoutY="1.0" prefHeight="54.0" prefWidth="1094.0" styleClass="selection-card" stylesheets="@../assets/css/menu.css">
+         <children>
+            <Label layoutX="19.0" layoutY="11.0" prefHeight="36.0" prefWidth="236.0" styleClass="selection-text" stylesheets="@../assets/css/menu.css" text="Customize" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="BacktoMenu_btn" layoutX="-18.0" layoutY="71.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="305.0" styleClass="back-customize-btn" stylesheets="@../assets/css/customize.css" text="🡰Back to Menu">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Button>
+      <Label fx:id="coffeeNameLabel" layoutX="317.0" layoutY="117.0" prefHeight="88.0" prefWidth="696.0" styleClass="coffee-name-label" stylesheets="@../assets/css/customize.css" text="Food name" />
+      <AnchorPane layoutX="19.0" layoutY="171.0" prefHeight="425.0" prefWidth="373.0">
+         <children>
+            <ImageView fx:id="coffeeImage" fitHeight="382.0" fitWidth="407.0" layoutX="-39.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/Coffee_Based/toffee_nut.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Label fx:id="coffeePriceLabel" layoutX="326.0" layoutY="190.0" prefHeight="54.0" prefWidth="391.0" styleClass="label-prize-customize" stylesheets="@../assets/css/customize.css" text="₱ 00.00" />
+      <Text fx:id="coffeeDescriptionLabel" layoutX="330.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description about the drink Description about the drink Description about the drink Description about the drink Description about the drink Description about the drink Description about the drink Description about the drink Description about the drink. About 1-2 Senctences. " wrappingWidth="661.13671875">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <Label layoutX="328.0" layoutY="310.0" prefHeight="54.0" prefWidth="391.0" styleClass="label-customize" stylesheets="@../assets/css/customize.css" text="Quantity:" />
+      <HBox layoutX="503.0" layoutY="325.0" prefHeight="46.0" prefWidth="124.0">
+         <children>
+            <Button fx:id="minusBtn" mnemonicParsing="false" prefHeight="36.0" prefWidth="39.0" styleClass="quantity-minus-add-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+            <Label fx:id="quantityLabel" contentDisplay="CENTER" prefHeight="36.0" prefWidth="37.0" styleClass="quantity-label" stylesheets="@../assets/css/customize.css" text="0" textAlignment="CENTER" />
+            <Button fx:id="plusBtn" maxHeight="44.0" maxWidth="46.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="46.0" styleClass="quantity-minus-add-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+         </children>
+      </HBox>
+      <Label layoutX="330.0" layoutY="376.0" prefHeight="54.0" prefWidth="391.0" styleClass="label-customize" stylesheets="@../assets/css/customize.css" text="Add-Ons:" />
+      <Text layoutX="502.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Optional">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <AnchorPane fx:id="espresoShot" layoutX="329.0" layoutY="445.0" prefHeight="50.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Extra Cheese" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Cheese%20.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 20.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="espressoShot_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="espressoShot_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="espressoShot_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <Button fx:id="addToOrderBtn" layoutX="329.0" layoutY="630.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="236.0" styleClass="add-to-order" stylesheets="@../assets/css/customize.css" text="Add to Order" />
+      <AnchorPane fx:id="sinker" layoutX="582.0" layoutY="445.0" prefHeight="48.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Bacon Bits" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Bacon%20Bits.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 25.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="sinker_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="sinker_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="sinker_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane fx:id="coldFoam" layoutX="833.0" layoutY="445.0" prefHeight="36.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Siracha" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Siracha.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 10.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="cold_foam_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="cold_foam_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="cold_foam_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane fx:id="syrup" layoutX="329.0" layoutY="503.0" prefHeight="36.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Garlic Mayo" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Garlic%20mayo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 15.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="syrup_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="syrup_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="syrup_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane fx:id="cheesecake" layoutX="582.0" layoutY="503.0" prefHeight="36.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Cheese Sauce" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Cheese%20Dip.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 20.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="cheesecake_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="cheesecake_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="cheesecake_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane fx:id="whippedCream" layoutX="833.0" layoutY="502.0" prefHeight="36.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Extra Beef" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Beef.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 35.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="whipped_cream_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="whipped_cream_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="whipped_cream_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane fx:id="subOutMilk" layoutX="329.0" layoutY="559.0" prefHeight="36.0" prefWidth="241.0" styleClass="add-ons-card" stylesheets="@../assets/css/customize.css">
+         <children>
+            <Button layoutX="41.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="164.0" styleClass="add-ons-label" stylesheets="@../assets/css/customize.css" text="Extra Chicharap" textAlignment="JUSTIFY">
+               <font>
+                  <Font size="5.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="6.0" layoutY="2.0">
+               <image>
+                  <Image url="@../assets/images/Icons/Chicharap.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="54.0" layoutY="23.0" styleClass="add-ons-prize" stylesheets="@../assets/css/customize.css" text="₱ 15.00" />
+            <HBox layoutX="157.0" layoutY="10.0" prefHeight="38.0" prefWidth="79.0">
+               <children>
+                  <Button fx:id="sub_oat_milk_minusBtn" maxHeight="38.0" maxWidth="38.0" minWidth="26.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="38.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➖" />
+                  <Label fx:id="sub_oat_milk_quantity" prefHeight="32.0" prefWidth="20.0" styleClass="add-ons-quantity" stylesheets="@../assets/css/customize.css" text="0" textOverrun="CLIP">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="sub_oat_milk_plusBtn" maxHeight="29.0" maxWidth="35.0" minWidth="18.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="35.0" styleClass="add-ons-btn" stylesheets="@../assets/css/customize.css" text="➕" />
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -345,18 +345,42 @@ public class MenuController {
     }
 
     private void openCustomize(String name, String price, String description, String imagePath) {
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/codecafe/view/customize.fxml"));
+
+            String fxmlPath;
+            boolean isFoodMenu =
+                    activeButton == click_food_btn ||
+                    activeButton == click_pastries_btn;
+
+            if (isFoodMenu) {
+                fxmlPath = "/codecafe/view/customize_foodCroffles_addOns.fxml";
+            } else {
+                fxmlPath = "/codecafe/view/customize.fxml";
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             AnchorPane customizePane = loader.load();
-            CustomizeController controller = loader.getController();
-            controller.setData(name, price, description, imagePath);
-            controller.setContentAnchor(contentAnchor, currentMenuPane, this);
+
+            if (isFoodMenu) {
+
+                CustomizeFoodCrofflesController controller = loader.getController();
+                controller.setData(name, price, description, imagePath);
+                controller.setContentAnchor(contentAnchor, currentMenuPane, this);
+
+            } else {
+
+                CustomizeController controller = loader.getController();
+                controller.setData(name, price, description, imagePath);
+                controller.setContentAnchor(contentAnchor, currentMenuPane, this);
+
+            }
 
             contentAnchor.getChildren().setAll(customizePane);
-            customizePane.setLayoutX(0);
-            customizePane.setLayoutY(0);
+
             customizePane.prefWidthProperty().bind(contentAnchor.widthProperty());
             customizePane.prefHeightProperty().bind(contentAnchor.heightProperty());
+
         } catch (IOException e) {
             e.printStackTrace();
         }

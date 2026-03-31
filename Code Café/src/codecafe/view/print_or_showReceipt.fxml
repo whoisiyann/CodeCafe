@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <Label layoutX="552.5" layoutY="264.0" prefHeight="146.0" prefWidth="815.0" styleClass="thankU-label" stylesheets="@../assets/css/printScene.css" text="Thank You For Ordering!" textAlignment="CENTER" />
-      <Button fx:id="showReceiptBtn" layoutX="808.5" layoutY="627.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="302.0" styleClass="show-receipt-btn" stylesheets="@../assets/css/printScene.css" text="show Receipt">
+      <Button fx:id="showReceiptBtn" layoutX="808.5" layoutY="627.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="302.0" styleClass="show-receipt-btn" stylesheets="@../assets/css/printScene.css" text="Show Receipt">
          <font>
             <Font size="28.0" />
          </font>
