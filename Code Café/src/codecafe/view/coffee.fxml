@@ -210,7 +210,7 @@
                               <Font size="4.0" />
                            </font>
                         </Label>
-                        <Label layoutX="22.0" layoutY="216.0" styleClass="label-menu-prize" stylesheets="@../assets/css/menu.css" text="₱ 99.00" />
+                        <Label layoutX="22.0" layoutY="216.0" styleClass="label-menu-prize" stylesheets="@../assets/css/menu.css" text="₱ 129.00" />
                         <Label fx:id="coffee_10" layoutX="181.0" layoutY="229.0" styleClass="plus-btn" stylesheets="@../assets/css/menu.css" text="+">
                            <font>
                               <Font size="39.0" />

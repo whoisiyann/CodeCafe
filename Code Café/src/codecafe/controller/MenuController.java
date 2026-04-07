@@ -137,7 +137,7 @@ public class MenuController {
 
         final AnchorPane finalContent = content;
 
-
+        
         if (clickedBtn == click_coffee_btn) {
             Platform.runLater(() -> attachHandlers(finalContent,
                 "coffee",
@@ -197,7 +197,7 @@ public class MenuController {
                 "nonCoffee",
                     new String[]{"nonCoffee1","nonCoffee2","nonCoffee3","nonCoffee4","nonCoffee5","nonCoffee6"},
                     new String[]{"Strawberry Milk","Blueberry Milk","Cookies & Cream","Hershy Choco","Strawberry Yogurt","Blueberry Yogurt"},
-                    new String[]{"₱ 109.00","₱ 109.00","₱ 109.00","₱ 109.00","₱ 125.00","₱ 135.00"},
+                    new String[]{"₱ 109.00","₱ 109.00","₱ 109.00","₱ 109.00","₱ 125.00","₱ 125.00"},
                     new String[]{
                         "A refreshing and creamy milk drink blended with sweet strawberry flavor. Smooth, fruity, and perfect for a light and enjoyable treat.",
                         "A delicious milk drink infused with sweet blueberry flavor. It’s creamy, fruity, and refreshing with a smooth finish.",
@@ -267,7 +267,7 @@ public class MenuController {
                 "food",
                     new String[]{"food1","food2","food3","food4","food5","food6","food7","food8"},
                     new String[]{"Chicharap","Regular Fries","Cheesy Fries","Cheesy Bacon Fries","Grilled Cheese","Classic Quesadilla","Beff Quesadilla","Beff Nachos"},
-                    new String[]{"₱ 99.00","₱ 109.00","₱ 109.00","₱ 119.00","₱ 119.00","₱ 129.00","₱ 119.00","₱ 119.00"},
+                    new String[]{"₱ 49.00","₱ 69.00","₱ 79.00","₱ 99.00","₱ 109.00","₱ 89.00","₱ 109.00","₱ 125.00"},
                     new String[]{
                         "Crispy golden fries topped with seasoned beef, melted cheese, and crunchy nacho bits. Every bite delivers a savory mix of crispy, cheesy, and meaty goodness. Perfect for sharing or enjoying as a satisfying snack.",
                         "A warm grilled tortilla filled with flavorful seasoned beef and melted cheese. Toasted to a golden crisp on the outside while remaining soft and cheesy inside. A hearty and satisfying savory treat.",
