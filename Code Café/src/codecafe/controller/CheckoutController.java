@@ -102,7 +102,7 @@ public class CheckoutController {
             }
         }
 
-        // ✅ IMPORTANT: recompute after load
+        // recompute after load
         updateTotals(orderedItemsMap);
 
         order_TYPE.setText(OrderData.getInstance().getOrderType());
@@ -125,7 +125,10 @@ public class CheckoutController {
                 int qty = Integer.parseInt(qtyLabel.getText());
 
                 double price = Double.parseDouble(
-                    priceLabel.getText().replace("₱", "").trim()
+                    priceLabel.getText()
+                        .replace("₱", "")
+                        .replace(",", "")
+                        .trim()
                 );
 
                 totalItems += qty;
@@ -142,24 +145,6 @@ public class CheckoutController {
 
         checkout_btn2.setDisable(totalItems == 0);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -378,7 +363,12 @@ public class CheckoutController {
                 itemPS.setInt(1, orderId);
                 itemPS.setString(2, name.getText());
                 itemPS.setInt(3, Integer.parseInt(qty.getText()));
-                itemPS.setDouble(4, Double.parseDouble(price.getText().replace("₱","").trim()));
+                itemPS.setDouble(4, Double.parseDouble(
+                    price.getText()
+                        .replace("₱","")
+                        .replace(",", "")
+                        .trim()
+                ));
                 itemPS.setString(5, addons.getText());
 
                 itemPS.addBatch();
