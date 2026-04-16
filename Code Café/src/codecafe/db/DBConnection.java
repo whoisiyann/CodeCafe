@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConnection {
     //                                                                                      for laptop 1 - Kios
-    private static final String URL = "jdbc:mysql://localhost:3306/codecafe_db"; // "jdbc:mysql://192.168.1._:3306/codecafe_db"
+    private static final String URL = "jdbc:mysql://10.138.23.52:3306/codecafe_db"; // "jdbc:mysql://192.168.1._:3306/codecafe_db"
     private static final String USER = "root";      //  "kiosk"          -laptop1 kiosk
     private static final String PASSWORD = "admin"; //  "kioskpass"      -laptop1 kiosk
 
@@ -21,7 +21,7 @@ public class DBConnection {
 
 
 /* 
-
+jdbc:mysql://localhost:3306/codecafe_db
 ------------------------------------------------------------------------------------
 //for MySQL Workbench type...
 

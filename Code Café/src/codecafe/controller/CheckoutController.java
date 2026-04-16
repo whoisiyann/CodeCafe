@@ -49,21 +49,119 @@ public class CheckoutController {
         ordered_items_VBox2.getChildren().clear();
 
         for (Node item : orderedItemsMap.values()) {
+
             ordered_items_VBox2.getChildren().add(item);
+
             ImageView deleteBtn = (ImageView) item.lookup("#delete_ordered_item");
+            Button plusBtn = (Button) item.lookup("#ordered_plusBtn");
+            Button minusBtn = (Button) item.lookup("#ordered_minusBtn");
+            Label qtyLabel = (Label) item.lookup("#orderedQuantityLabel");
+            Label priceLabel = (Label) item.lookup("#ordered_price");
+
+            // DELETE
             if (deleteBtn != null) {
                 deleteBtn.setOnMouseClicked(e -> {
                     ordered_items_VBox2.getChildren().remove(item);
                     orderedItemsMap.entrySet().removeIf(entry -> entry.getValue() == item);
+                    updateTotals(orderedItemsMap);
+                });
+            }
+
+            // SAFE CHECK
+            if (qtyLabel == null || priceLabel == null) continue;
+
+            double unitPrice = (double) item.getUserData();
+
+            // PLUS
+            if (plusBtn != null) {
+                plusBtn.setOnAction(e -> {
+                    int qty = Integer.parseInt(qtyLabel.getText());
+                    qty++;
+
+                    qtyLabel.setText(String.valueOf(qty));
+                    priceLabel.setText("₱ " + String.format("%.2f", unitPrice * qty));
+
+                    updateTotals(orderedItemsMap);
+                });
+            }
+
+            // MINUS
+            if (minusBtn != null) {
+                minusBtn.setOnAction(e -> {
+                    int qty = Integer.parseInt(qtyLabel.getText());
+
+                    if (qty > 1) {
+                        qty--;
+
+                        qtyLabel.setText(String.valueOf(qty));
+                        priceLabel.setText("₱ " + String.format("%.2f", unitPrice * qty));
+
+                        updateTotals(orderedItemsMap);
+                    }
                 });
             }
         }
 
-        total_items_label2.setText("Total Item: " + totalItems);
-        total_price_label2.setText("Total Price: ₱ " + String.format("%.2f", totalPrice));
+        // ✅ IMPORTANT: recompute after load
+        updateTotals(orderedItemsMap);
 
         order_TYPE.setText(OrderData.getInstance().getOrderType());
     }
+
+
+    // UPDATE TOTAL PRICE AND TOTAL ITEMS
+    private void updateTotals(HashMap<String, Node> orderedItemsMap) {
+
+        double totalPrice = 0;
+        int totalItems = 0;
+
+        for (Node itemCard : orderedItemsMap.values()) {
+
+            Label qtyLabel = (Label) itemCard.lookup("#orderedQuantityLabel");
+            Label priceLabel = (Label) itemCard.lookup("#ordered_price");
+
+            if (qtyLabel != null && priceLabel != null) {
+
+                int qty = Integer.parseInt(qtyLabel.getText());
+
+                double price = Double.parseDouble(
+                    priceLabel.getText().replace("₱", "").trim()
+                );
+
+                totalItems += qty;
+                totalPrice += price;
+            }
+        }
+
+        total_items_label2.setText("Total Items: " + totalItems);
+        total_price_label2.setText("Total Price: ₱ " + String.format("%.2f", totalPrice));
+
+        // update OrderData also (important!)
+        OrderData.getInstance().setTotalItems(totalItems);
+        OrderData.getInstance().setTotalPrice(totalPrice);
+
+        checkout_btn2.setDisable(totalItems == 0);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @FXML
     private void goBackMenu() {
@@ -191,10 +289,10 @@ public class CheckoutController {
             printContent.setMaxWidth(450);
             printContent.setAlignment(Pos.TOP_CENTER);   
 
-            // Add logo container and receipt label
+            // logo container and receipt label
             printContent.getChildren().addAll(logoContainer, receiptLabel);
 
-            //  Printer job 
+            // Printer job 
             PrinterJob job = PrinterJob.createPrinterJob();
             if (job != null) {
                 job.getJobSettings().setPrintColor(PrintColor.MONOCHROME);
@@ -202,7 +300,7 @@ public class CheckoutController {
                         job.getPrinter().createPageLayout(
                                 Paper.NA_LETTER,
                                 PageOrientation.PORTRAIT,
-                                36, 36, 36, 36 // margins: top, right, bottom, left in points
+                                36, 36, 36, 36 
                         )
                 );
 
